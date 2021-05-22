@@ -2,9 +2,9 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
 WORKDIR /app
 RUN ls -la ./
 RUN ls -la /
-RUN ls -la /app
+RUN ls -la /home/circleci/project
 COPY / ./
-RUN dotnet publish PageRendrAPI.csproj -c Release -o out
+RUN dotnet publish /home/circleci/project/PageRendrAPI.sln -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.6
