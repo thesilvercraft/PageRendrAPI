@@ -12,10 +12,11 @@ namespace PageRendrAPI.Controllers
     [Route("renderpage")]
     public class WeatherForecastController : ControllerBase
     {
+        private readonly SeleniumBrowser browser = new();
+
         [HttpGet]
         public async Task<IActionResult> Get(string url = "https://silverdimond.tk")
         {
-            var browser = new SeleniumBrowser();
             return File(await browser.RenderUrlAsyncAsByteArray(url), "image/png");
         }
     }
