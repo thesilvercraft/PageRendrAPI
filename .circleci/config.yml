@@ -8,4 +8,4 @@ jobs:
      - run: |         
          docker login --username=$HEROKU_USERNAME --password=$HEROKU_API_KEY registry.heroku.com             
          curl https://cli-assets.heroku.com/install.sh | sh
-         heroku container:push web
+         heroku container:push web -a pagerendererapi
