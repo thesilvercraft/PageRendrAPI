@@ -4,11 +4,12 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 COPY /PageRendrAPI/*.csproj ./
 COPY /SDBrowser/*.csproj ./
-RUN dotnet restore
+RUN dir
+RUN dotnet restore PageRendrAPI.sln
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish PageRendrAPI.csproj -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.6
