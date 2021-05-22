@@ -46,8 +46,7 @@ namespace SDBrowser
             _isLocked = true;
             _webDriver.Url = "data:text/html;base64," + Convert.ToBase64String(Encoding.UTF8.GetBytes(html));
             _webDriver.Navigate();
-            IWait<IWebDriver> wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(30.00));
-
+            IWait<IWebDriver> wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
             wait.Until(driver1 => ((IJavaScriptExecutor)_webDriver).ExecuteScript("return document.readyState").Equals("complete")); var ss = ((ITakesScreenshot)_webDriver).GetScreenshot();
             _isLocked = false;
             return ss.AsByteArray;
@@ -74,8 +73,7 @@ namespace SDBrowser
             {
                 _webDriver.Url = url;
                 _webDriver.Navigate();
-                IWait<IWebDriver> wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(30.00));
-
+                IWait<IWebDriver> wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
                 wait.Until(driver1 => ((IJavaScriptExecutor)_webDriver).ExecuteScript("return document.readyState").Equals("complete")); var ss = ((ITakesScreenshot)_webDriver).GetScreenshot();
                 _isLocked = false;
                 return ss.AsByteArray;
