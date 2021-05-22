@@ -1,13 +1,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
 WORKDIR /app
-RUN ls
-# Copy csproj and restore as distinct layers
-COPY /PageRendrAPI/*.csproj ./
-COPY /SDBrowser/*.csproj ./
-RUN dotnet restore PageRendrAPI.csproj 
-
-# Copy everything else and build
-COPY . ./
+RUN ls -la ./
+RUN ls -la /
+COPY / ./
 RUN dotnet publish PageRendrAPI.csproj -c Release -o out
 
 # Build runtime image
