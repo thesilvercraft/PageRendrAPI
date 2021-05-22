@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
 WORKDIR /app
 RUN ls -la ./
 RUN ls -la /
+RUN ls -la /app
 COPY / ./
 RUN dotnet publish PageRendrAPI.csproj -c Release -o out
 
