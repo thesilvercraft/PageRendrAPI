@@ -12,6 +12,7 @@ COPY --from=build-env /app/out .
 ADD http://chromedriver.storage.googleapis.com/90.0.4430.24/chromedriver_linux64.zip chromedriver.zip
 RUN apt-get update
 RUN apt-get install unzip -y
+RUN apt-get install -y google-chrome-stable
 RUN unzip chromedriver.zip
 RUN ls -la 
 ENTRYPOINT ["dotnet", "PageRendrAPI.dll"]
