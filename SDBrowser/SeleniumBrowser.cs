@@ -25,6 +25,9 @@ namespace SDBrowser
             }
 
             chromeOptions.AddArguments("headless");
+            chromeOptions.AddArguments("disable-gpu");
+            chromeOptions.AddArguments("no-sandbox");
+            chromeOptions.AddArguments("remote-debugging-port=9222");
             _webDriver = new ChromeDriver(chromeOptions);
             _webDriver.Manage().Window.Size = new Size(1920, 1080);
         }
