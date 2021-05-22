@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 namespace PageRendrAPI.Controllers
 {
     [ApiController]
-    [Route("gamer")]
+    [Route("renderpage")]
     public class WeatherForecastController : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> Get(string gamer = "https://silverdimond.tk")
+        public async Task<IActionResult> Get(string url = "https://silverdimond.tk")
         {
             var browser = new SeleniumBrowser();
-            return File(await browser.RenderUrlAsyncAsByteArray(gamer), "image/png");
+            return File(await browser.RenderUrlAsyncAsByteArray(url), "image/png");
         }
     }
 }
