@@ -14,13 +14,13 @@ namespace PageRendrAPI.Controllers
 {
     [ApiController]
     [Route("renderpage")]
-    public class WeatherForecastController : ControllerBase
+    public class RenderController : ControllerBase
     {
         private readonly SeleniumBrowser Browser;
         private readonly HttpClient HttpClient;
         private readonly ApiClient ApiClient;
 
-        public WeatherForecastController(SeleniumBrowser browser, HttpClient httpClient, ApiClient apiClient)
+        public RenderController(SeleniumBrowser browser, HttpClient httpClient, ApiClient apiClient)
         {
             Browser = browser;
             HttpClient = httpClient;
