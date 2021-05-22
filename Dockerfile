@@ -4,7 +4,6 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 COPY /PageRendrAPI/*.csproj ./
 COPY /SDBrowser/*.csproj ./
-RUN dir
 RUN dotnet restore PageRendrAPI.sln
 
 # Copy everything else and build
