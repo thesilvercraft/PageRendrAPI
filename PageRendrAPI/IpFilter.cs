@@ -9,7 +9,7 @@ namespace PageRendrAPI
     { 
          public override void OnActionExecuting(ActionExecutingContext context)
          {
-             var clientIPAddress = context.HttpContext.Connection.RemoteIpAddress;
+             var clientIPAddress = context.HttpContext.Request.Headers["x-forwarded-for"];
              Console.WriteLine(clientIPAddress);
              Console.WriteLine(Program.externalIp);
              if (clientIPAddress == Program.externalIp)
