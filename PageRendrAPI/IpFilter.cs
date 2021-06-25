@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Diagnostics;
+
 namespace PageRendrAPI
 {
     public class ClientIPAddressFilterAttribute : ActionFilterAttribute
@@ -9,7 +11,9 @@ namespace PageRendrAPI
              var clientIPAddress = context.HttpContext.Connection.RemoteIpAddress;
              if (clientIPAddress == Program.externalIp)
              {
-             context.Result = new UnauthorizedResult();
+                Debug.WriteLine(clientIPAddress);
+                Debug.WriteLine(Program.externalIp);
+                context.Result = new UnauthorizedResult();
              }
          }
     }
