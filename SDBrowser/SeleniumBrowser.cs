@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.DevTools;
+using OpenQA.Selenium.DevTools.V89.Network;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Drawing;
@@ -23,15 +24,22 @@ namespace SDBrowser
             {
                 chromeOptions.BinaryLocation = Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN");
             }
-
             chromeOptions.AddArguments("headless");
             chromeOptions.AddArguments("disable-gpu");
             chromeOptions.AddArguments("no-sandbox");
-
             _webDriver = new ChromeDriver(chromeOptions);
             _webDriver.Manage().Window.Size = new Size(1920, 1080);
         }
-
+        public void BlockUrlsUsingChromeDevTools(string[] urls)
+        {
+            var devTools = (_webDriver as IDevTools).GetDevToolsSession();
+            SetBlockedURLsCommandSettings blockedUrlSettings = new SetBlockedURLsCommandSettings
+            {
+                Urls = urls
+            };
+            devTools.SendCommand(blockedUrlSettings);
+            devTools.SendCommand(new EnableCommandSettings());
+        }
         public async Task<Bitmap> RenderHtmlAsync(string html)
         {
             return Utils.ByteArrayToImage(await RenderHtmlAsyncAsByteArray(html));

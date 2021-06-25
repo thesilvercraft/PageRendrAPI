@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace PageRendrAPI.Controllers
 {
     [ApiController]
-    [Route("renderpage")]
+    [Route("renderpage")]   
     public class RenderController : ControllerBase
     {
         private readonly SeleniumBrowser Browser;
@@ -28,6 +28,7 @@ namespace PageRendrAPI.Controllers
         }
 
         [HttpGet]
+        [ClientIPAddressFilter]
         public async Task<IActionResult> Get(string url = "https://silverdimond.tk")
         {
             var imageEndpoint = new ImageEndpoint(ApiClient, HttpClient);
