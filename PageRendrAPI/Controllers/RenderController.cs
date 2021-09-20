@@ -29,7 +29,7 @@ namespace PageRendrAPI.Controllers
 
         [HttpGet]
         [ClientIPAddressFilter]
-        public async Task<IActionResult> Get(string url = "https://silverdimond.tk")
+        public async Task<IActionResult> Get(string url = "https://silverdiamond.cf")
         {
             var imageEndpoint = new ImageEndpoint(ApiClient, HttpClient);
             var imageUpload = await imageEndpoint.UploadImageAsync(new MemoryStream(await Browser.RenderUrlAsyncAsByteArray(url)));

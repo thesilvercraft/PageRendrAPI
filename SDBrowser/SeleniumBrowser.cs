@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools;
-using OpenQA.Selenium.DevTools.V89.Network;
+using OpenQA.Selenium.DevTools.V93.Network;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Drawing;
@@ -27,6 +27,12 @@ namespace SDBrowser
             chromeOptions.AddArguments("headless");
             chromeOptions.AddArguments("disable-gpu");
             chromeOptions.AddArguments("no-sandbox");
+            chromeOptions.AddArguments("disable-dev-shm-usage");
+            chromeOptions.AddArgument("disable-infobars");
+            chromeOptions.AddArgument("--incognito");
+            chromeOptions.AddUserProfilePreference("credentials_enable_service", false);
+            chromeOptions.AddUserProfilePreference("profile.password_manager_enabled", false);
+            chromeOptions.AddArgument("dns-prefetch-disable");
             _webDriver = new ChromeDriver(chromeOptions);
             _webDriver.Manage().Window.Size = new Size(1920, 1080);
         }
