@@ -34,7 +34,7 @@ namespace PageRendrAPI.Controllers
         {
             if(Cache.TryGetValue(url, out var thing))
             {
-                if((DateTime.Now - thing.Item2 )>TimeSpan.FromMinutes(2))
+                if((DateTime.Now - thing.Item2 )<TimeSpan.FromMinutes(2))
                 {
                     return Redirect(thing.Item1);
                 }
