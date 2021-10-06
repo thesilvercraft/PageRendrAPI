@@ -48,7 +48,7 @@ namespace PageRendrAPI.Controllers
                 }
             }
             var imageEndpoint = new ImageEndpoint(ApiClient, HttpClient);
-            var imageUpload = await imageEndpoint.UploadImageAsync(new MemoryStream(await Browser.RenderUrlAsyncAsByteArray(url, waitfor5s)));
+            var imageUpload = await imageEndpoint.UploadImageAsync(new MemoryStream(await Browser.RenderUrlAsyncAsByteArray(url, waittime)));
             if (Cache.ContainsKey(url))
             {
                 Cache.Remove(url);
