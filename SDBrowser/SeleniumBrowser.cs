@@ -46,12 +46,12 @@ namespace SDBrowser
             devTools.SendCommand(blockedUrlSettings);
             devTools.SendCommand(new EnableCommandSettings());
         }
-        public async Task<Bitmap> RenderHtmlAsync(string html, bool waitfor10s = false)
+        public async Task<Bitmap> RenderHtmlAsync(string html, byte waittime = 0)
         {
-            return Utils.ByteArrayToImage(await RenderHtmlAsyncAsByteArray(html, waitfor10s));
+            return Utils.ByteArrayToImage(await RenderHtmlAsyncAsByteArray(html, waittime));
         }
 
-        public async Task<byte[]> RenderHtmlAsyncAsByteArray(string html, bool waitfor10s = false)
+        public async Task<byte[]> RenderHtmlAsyncAsByteArray(string html, byte waittime = 0)
         {
             while (_isLocked)
             {
@@ -62,23 +62,23 @@ namespace SDBrowser
             _webDriver.Navigate();
             IWait<IWebDriver> wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
             wait.Until(driver1 => ((IJavaScriptExecutor)_webDriver).ExecuteScript("return document.readyState").Equals("complete"));
-            if (waitfor10s)
+            if (waittime != 0)
             {
-                await Task.Delay(10000);
+                await Task.Delay(waittime * 1000);
             }
             var ss = ((ITakesScreenshot)_webDriver).GetScreenshot();
             _isLocked = false;
             return ss.AsByteArray;
         }
 
-        public async Task<Bitmap> RenderUrlAsync(string url, bool waitfor10s = false)
+        public async Task<Bitmap> RenderUrlAsync(string url, byte waittime = 0)
         {
-            return Utils.ByteArrayToImage(await RenderUrlAsyncAsByteArray(url, waitfor10s));
+            return Utils.ByteArrayToImage(await RenderUrlAsyncAsByteArray(url, waittime));
         }
 
        
 
-        public async Task<byte[]> RenderUrlAsyncAsByteArray(string url, bool waitfor10s = false)
+        public async Task<byte[]> RenderUrlAsyncAsByteArray(string url, byte waittime = 0)
         {
             while (_isLocked)
             {
@@ -91,9 +91,9 @@ namespace SDBrowser
                 _webDriver.Navigate();
                 IWait<IWebDriver> wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
                 wait.Until(driver1 => ((IJavaScriptExecutor)_webDriver).ExecuteScript("return document.readyState").Equals("complete"));
-                if(waitfor10s)
+                if(waittime != 0)
                 {
-                    await Task.Delay(10000);
+                    await Task.Delay(waittime * 1000);
                 }
                 var ss = ((ITakesScreenshot)_webDriver).GetScreenshot();
                 _isLocked = false;

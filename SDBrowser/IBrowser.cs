@@ -6,13 +6,13 @@ namespace SDBrowser
 {
     public interface IBrowser
     {
-        Task<Bitmap> RenderUrlAsync(string url, bool waitfor10s = false);
+        Task<Bitmap> RenderUrlAsync(string url, byte waittime = 0);
 
-        Task<Bitmap> RenderUrlAsync(Uri url, bool waitfor10s=false)
+        Task<Bitmap> RenderUrlAsync(Uri url, byte waittime = 0)
         {
-            return RenderUrlAsync(url.ToString(), waitfor10s);
+            return RenderUrlAsync(url.ToString(), waittime);
         }
 
-        Task<Bitmap> RenderHtmlAsync(string html, bool waitfor10s = false);
+        Task<Bitmap> RenderHtmlAsync(string html, byte waittime = 0);
     }
 }
