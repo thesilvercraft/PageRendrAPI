@@ -31,7 +31,7 @@ namespace PageRendrAPI.Controllers
 
         [HttpGet]
         [ClientIPAddressFilter]
-        public async Task<IActionResult> Get(string url = "https://silverdiamond.cf")
+        public async Task<IActionResult> Get(string url = "https://silverdiamond.cf",bool waitfor10s=false)
         {
             Debug.WriteLine(Cache.Count == 1 ? "There is {0} thing in cache" : "There are {0} things in the cache", Cache.Count);
             if (Cache.TryGetValue(url, out var thing))
@@ -44,7 +44,7 @@ namespace PageRendrAPI.Controllers
                 }
             }
             var imageEndpoint = new ImageEndpoint(ApiClient, HttpClient);
-            var imageUpload = await imageEndpoint.UploadImageAsync(new MemoryStream(await Browser.RenderUrlAsyncAsByteArray(url)));
+            var imageUpload = await imageEndpoint.UploadImageAsync(new MemoryStream(await Browser.RenderUrlAsyncAsByteArray(url, waitfor10s)));
             if (Cache.ContainsKey(url))
             {
                 Cache.Remove(url);
