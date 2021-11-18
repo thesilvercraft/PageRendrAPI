@@ -9,7 +9,7 @@ RUN dotnet publish PageRendrAPI.sln -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:5.0.6
 WORKDIR /app
 COPY --from=build-env /app/out .
-ADD https://chromedriver.storage.googleapis.com/93.0.4577.63/chromedriver_linux64.zip chromedriver.zip
+ADD https://chromedriver.storage.googleapis.com/96.0.4664.45/chromedriver_linux64.zip chromedriver.zip
 RUN apt-get update
 RUN apt-get install unzip -y
 RUN apt-get install wget -y
